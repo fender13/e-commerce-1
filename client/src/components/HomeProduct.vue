@@ -16,10 +16,6 @@
                 <img class="pic-1" v-bind:src="item.productPicture">
               </a>
               <span class="product-trend-label" v-if="item.price > 0">{{ formatPercent(item.normalPrice, item.price) }} %</span>
-              <ul class="social">
-                <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                <li><a href="#" data-tip="Wishlist"><i class="fa fa-heart"></i></a></li>
-              </ul>
             </div>
             <div class="product-content">
               <router-link  :to="{ name: 'ProductPage', params: { id: item._id, name: item.productName} }"><h3 class="title">{{ item.productName }}</h3></router-link>
@@ -112,6 +108,7 @@ export default {
 
 .grid-list {
   margin-top: 5%;
+  margin-bottom: 10%;
 }
 
 :root{ --main-color: #d49d97; }

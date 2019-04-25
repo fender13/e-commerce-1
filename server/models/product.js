@@ -18,8 +18,7 @@ const ProductSchema = new schema({
     required: true
   },
   productPicture: {
-    type: String,
-    required: true
+    type: String
   },
   shortDescriptions: {
     type: String

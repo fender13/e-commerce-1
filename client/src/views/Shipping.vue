@@ -95,7 +95,7 @@
         </b-form>
       </div>
     </div>
-    
+    <MainFooter></MainFooter>
   </div>
 </template>
 
@@ -103,6 +103,7 @@
 import axios from '@/database/server'
 import router from '@/router'
 import MainHeader from '@/views/Header.vue'
+import MainFooter from '@/components/Footer.vue'
 
 export default {
   name: 'ShippingPayment'  ,
@@ -125,7 +126,8 @@ export default {
     }
   },
   components: {
-    MainHeader
+    MainHeader,
+    MainFooter
   },
   mounted() {
     this.getAddress()
@@ -266,6 +268,7 @@ export default {
 <style scoped>
 .payment-shipping-container {
   margin-top: 5%;
+  margin-bottom: 5%;
   max-width: 100%;
   margin-left: 5%;
   margin-right: 5%;
@@ -273,6 +276,7 @@ export default {
 
 .main-table {
   margin-top: 5%;
+  margin-bottom: 5%;
   max-width: 100%;
   margin-left: 5%;
   margin-right: 5%;

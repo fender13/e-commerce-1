@@ -154,7 +154,7 @@ import router from '@/router'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 export default {
-  name: 'AddNewProducts',
+  name: 'UpdateProducts',
   data() {
     return {
       productName: '',
@@ -189,36 +189,18 @@ export default {
           for (let i = 0; i < data.length; i++) {
             this.brands.push(data[i].brandName)
           }
+          this.getOneProduct()
         })
         .catch(({ response }) => {
           console.log(response)
         })
     },
-    addNewProduct() {
-      let dataFormat = new FormData()
-
-      dataFormat.append("productName", this.productName)
-      dataFormat.append("shortDescription", this.shortDescription)
-      dataFormat.append("tags", this.tags)
-      dataFormat.append("brand", this.brand)
-      dataFormat.append("productDescription", this.editorData)
-      dataFormat.append("normalPrice", this.normalPrice)
-      dataFormat.append("price", this.price)
-      dataFormat.append("quantity", this.quantity)
-      dataFormat.append("weight", this.weight)
-      dataFormat.append("image", this.$refs.file.files[0])
-
+    getOneProduct() {
       axios
-        .post(`/products/upload`, dataFormat)
-        .then(({ data }) => {
-          router.push('/dashboard/catalogue')
+        .get(`/products/${this.$route.params.id}`)
+        .data(({ data }) => {
+          this.productName = data.productName
         })
-        .catch(({ response }) => {
-          console.log(response)
-        })
-    },
-    onImageChange() {
-      this.fileName = this.$refs.file.files[0].name
     }
   }
 }

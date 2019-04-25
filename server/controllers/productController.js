@@ -86,31 +86,6 @@ class ProductController {
       })
   }
 
-  static getProductPage(req, res) {
-    const page = req.params.page
-    console.log(page, 'update')
-
-    Product
-      .find()
-      .populate('brand')
-      .then((data) => {
-        let products = page * 9
-        let start = products - 9
-
-        let arr = []
-        for (let i = 0; i < data.length; i++) {
-          if (i >= start && i < products ) {
-            arr.push(data[i])
-          }
-        }
-
-        res.status(200).json(arr)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
-
   static getSingleProduct(req, res) {
     Product
       .findOne({

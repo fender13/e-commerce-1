@@ -84,7 +84,33 @@ class CartController {
       })
       .catch((err) => {
         res.status(400).json({
-          message:err
+          message: err.message
+        })
+      })
+  }
+
+  static removeCartItem(req, res) {
+    const productId = req.params.id
+
+    Cart
+      .findOne({
+        UserId: req.userData.id
+      })
+      .then((data) => {
+        const getId = { _id: data._id }
+
+        return Cart
+          .findByIdAndUpdate(getId, 
+            { "$pull": { "ProductId": productId } },
+            { "new": true, "upsert": true }
+          )
+      })
+      .then((data) => {
+        res.status(200).json(data)
+      })
+      .catch((err) => {
+        res.status(500).json({
+          message: err.message
         })
       })
   }

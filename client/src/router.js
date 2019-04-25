@@ -33,6 +33,14 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "Dashboard" */ './views/Dashboard.vue'),
       children: [
         {
+          path: '/dashboard/order-history',
+          name: 'OrderHistory',
+          meta: {
+            authRequired: true
+          },
+          component: () => import(/* webpackChunkName: "OrderHistory" */ './components/OrderHistory.vue')
+        },
+        {
           path: '/dashboard/catalogue',
           name: 'MainCatalogue',
           meta: {
@@ -70,7 +78,31 @@ const router = new Router({
           meta: {
             authRequired: true
           },
-          component: () => import(/* webpackChunkName: "PurchaseHistory" */ './views/PurchaseHistory.vue')
+          component: () => import(/* webpackChunkName: "PurchaseHistory" */ './components/PurchaseHistory.vue')
+        },
+        {
+          path: '/dashboard/upload-bukti-bayar/:id',
+          name: 'UploadResi',
+          meta: {
+            authRequired: true
+          },
+          component: () => import(/* webpackChunkName: "UploadResi" */ './components/UpdateUserTransaction.vue')
+        },
+        {
+          path: '/dashboard/update-resi-pengiriman/:id',
+          name: 'UpdateResiPengiriman',
+          meta: {
+            authRequired: true
+          },
+          component: () => import(/* webpackChunkName: "UpdateResiPengiriman" */ './components/UpdateResiPengiriman.vue')
+        },
+        {
+          path: '/dashboard/catalogue/update-product/:id',
+          name: 'UpdateProducts',
+          meta: {
+            authRequired: true
+          },
+          component: () => import(/* webpackChunkName: "UpdateResiPengiriman" */ './components/UpdateProduct.vue')
         },
       ]
     },
@@ -110,19 +142,15 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('masuk before if')
   if (to.matched.some(record => record.meta.authRequired)) {
       if (!localStorage.getItem('token')) {
-        console.log('masuk sini -1 if')
           next({
               path: '/member-area'
           });
       } else {
-        console.log('masuk sini 1 if', to)
           next()
       }
   } else {
-    console.log('masuk sini 2 if')
       next()
   }
 })

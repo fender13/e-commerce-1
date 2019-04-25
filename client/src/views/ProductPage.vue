@@ -61,6 +61,7 @@
     <div class="container description">
       <p v-html="productDescriptions">{{ productDescriptions }}</p>
     </div>
+    <MainFooter></MainFooter>
   </div>
 </template>
 
@@ -68,6 +69,7 @@
 import axios from '@/database/server'
 import router from '@/router'
 import MainHeader from '@/views/Header.vue'
+import MainFooter from '@/components/Footer.vue'
 
 export default {
   name: 'ProductPage',
@@ -90,7 +92,8 @@ export default {
     }
   },
   components: {
-    MainHeader
+    MainHeader,
+    MainFooter
   },
   mounted() {
     this.getSingleProduct(this.$route.params.id)
@@ -379,6 +382,7 @@ export default {
 
 .description {
   margin-top: 3%;
+  margin-bottom: 5%;
 }
 
 .opsi-button {
@@ -406,4 +410,5 @@ export default {
   color: red;
   margin-left: 3%;
 }
+
 </style>

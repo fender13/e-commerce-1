@@ -19,11 +19,7 @@ router.post('/upload', authentication, authorization, multer.single('image'), gc
 // get all product
 router.get('/', controller.getAllProduct)
 
-// get product page
-router.get('/page/:page', controller.getProductPage)
-
 // get single product
 router.get('/:id', controller.getSingleProduct)
-
 
 module.exports = router

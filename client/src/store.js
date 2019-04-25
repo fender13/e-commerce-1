@@ -186,6 +186,9 @@ export default new Vuex.Store({
       commit('setRole', '')
       router.push('/')
       swal("Good Bye", "success")
+    },
+    updateCartItems({ commit }, { productId }) {
+
     }
     
   },

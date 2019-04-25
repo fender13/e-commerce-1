@@ -52,7 +52,7 @@ const AddressSchema = new schema({
   UserId: {
     type: schema.Types.ObjectId,
     ref: 'Users'
-  },
+  }
 })
 
 var Address = mongoose.model('Address', AddressSchema)

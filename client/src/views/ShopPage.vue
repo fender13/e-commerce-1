@@ -3,7 +3,7 @@
     <MainHeader></MainHeader>
     <div class="main-product">
       <b-row class="">
-        <b-col>1 of 3</b-col>
+        <b-col></b-col>
         <b-col cols="9" class="product-contrainer">
           <b-container class="main-product-container">
             <b-row class="baris-product">
@@ -14,10 +14,6 @@
                       <img class="pic-1" v-bind:src="item.productPicture">
                     </a>
                     <span class="product-trend-label" v-if="item.price > 0">{{ formatPercent(item.normalPrice, item.price) }} %</span>
-                    <ul class="social">
-                      <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                      <li><a href="#" data-tip="Wishlist"><i class="fa fa-heart"></i></a></li>
-                    </ul>
                   </div>
                   <div class="product-content">
                     <router-link  :to="{ name: 'ProductPage', params: { id: item._id, name: item.productName} }"><h3 class="title">{{ item.productName }}</h3></router-link>
@@ -38,6 +34,7 @@
         </b-col>
       </b-row>  
     </div>
+    <MainFooter></MainFooter>
   </div>
 </template>
 
@@ -45,11 +42,13 @@
 import MainHeader from '@/views/Header.vue'
 import axios from '@/database/server'
 import router from '@/router'
+import MainFooter from '@/components/Footer.vue'
 
 export default {
   name: 'ShopPage',
   components: {
-    MainHeader
+    MainHeader,
+    MainFooter
   },
   data() {
     return {
@@ -81,6 +80,10 @@ export default {
 </script>
 
 <style scoped>
+.main-product {
+  margin-bottom: 5%;
+}
+
 .product-contrainer.col-9 {
   margin: 0;
   padding:0;

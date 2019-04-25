@@ -26,11 +26,11 @@
             <td style="text-align:center">{{ item.weight * cart[2][index] }}</td>
             <td style="text-align:center">Rp  {{ formatPrice(cart[2][index] * item.price) }}</td>
             <td style="text-align:center">
-              <b-dropdown id="dropdown-right" right text="Options" variant="transparent" class="button-options">
-                <b-dropdown-item href="#">Increase Quantity</b-dropdown-item>
-                <b-dropdown-item href="#">Decrease Quantity</b-dropdown-item>
-                <b-dropdown-item href="#">Delete Items</b-dropdown-item>
-              </b-dropdown>
+              <router-link to="/dashboard/catalogue">
+                <a class="nav-link" href="#" v-on:click.prevent="updateCart(cart[0], item._id)">
+                  <i class="fas fa-trash-alt icon-trash"></i>
+                  <span>Delete</span></a>
+              </router-link>
             </td>
           </tr>
           <tr class="total-price">
@@ -44,6 +44,7 @@
         <b-button block variant="primary" class="checkout-button" v-on:click.prevent="goToSetAddress(cart[1], cart[2])">Set Recipient Address</b-button>
       </div>
     </div>
+    <MainFooter></MainFooter>
   </div>
 </template>
 
@@ -51,6 +52,7 @@
 import axios from '@/database/server'
 import router from '@/router'
 import MainHeader from '@/views/Header.vue'
+import MainFooter from '@/components/Footer.vue'
 
 export default {
   name: 'CheckOutSummart',
@@ -60,7 +62,8 @@ export default {
     }
   },
   components: {
-    MainHeader
+    MainHeader,
+    MainFooter
   },
   mounted() {
     this.getCartDetails()
@@ -107,7 +110,6 @@ export default {
         totalWeight += cartItem[i].weight
       }
       
-
       return [cartItem, arr, arrCount, total, totalWeight]
     }
   },
@@ -138,6 +140,16 @@ export default {
             this.error = response.data.message
           }
         })
+    },
+    updateCart(list, productId) {
+      axios
+        .delete(`/carts/${productId}`)
+        .then(({ data }) => {
+          this.getCartDetails()
+        })
+        .catch(({ response }) => {
+          console.log(response)
+        })
     }
   }
 }
@@ -148,6 +160,7 @@ export default {
   max-width: 100%;
   margin-left: 5%;
   margin-right: 5%;
+  margin-bottom: 5%;
 }
 
 th.no {
@@ -221,5 +234,9 @@ thead th {
 
 .error {
   color: red;
+}
+
+.icon-trash {
+  margin-right: 4%;
 }
 </style>

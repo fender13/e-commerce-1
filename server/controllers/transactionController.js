@@ -24,12 +24,12 @@ class TransactionController {
         alamatPengiriman: pengiriman._id,
         ongkir: serviceCost,
         totalPembayaran: totalCost,
-        statusPengiriman: false,
-        statusPenerimaan: false,
+        statusPengiriman: 'false',
+        statusPenerimaan: 'false',
         metodePembayaran: pembayaran,
         metodePengiriman: fixedCourier,
         servicePengiriman: fixedService,
-        statusPembayaran: false,
+        statusPembayaran: 'false',
         resiKirim: 'null',
         linkPembayaran: 'null',
         createdAt: new Date()
@@ -60,6 +60,78 @@ class TransactionController {
       })
       .populate('ProductId')
       .populate('alamatPengiriman')
+      .then((data) => {
+        res.status(200).json(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  static getAllSuccessTransaction(req, res) {
+    Transaction
+      .find()
+      .populate('UserId')
+      .populate('alamatPengiriman')
+      .then((data) => {
+        res.status(200).json(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  
+  static updateBuktiBayar(req, res) {
+    const getId = { _id: req.params.id }
+
+    let url = ''
+    if (req.file && req.file.gcsUrl) {
+      url = req.file.gcsUrl
+    } else {
+      throw new Error('Unable to upload');
+    }
+
+    Transaction
+      .findByIdAndUpdate(getId, {
+        linkPembayaran: url,
+        statusPembayaran: 'pending'
+      })
+      .then((data) => {
+        res.status(200).json(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  static updateResi(req, res) {
+    const { resiKirim } = req.body
+    const getId = { _id: req.params.id }
+
+    Transaction
+      .findByIdAndUpdate(getId, {
+        resiKirim: resiKirim,
+        statusPengiriman: 'true'
+      })
+      .then((data) => {
+        res.status(200).json(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  static updateStatusPemesanan(req, res) {
+    const getId = { _id: req.params.id }
+
+    Transaction
+      .findByIdAndUpdate(getId, {
+        statusPenerimaan: 'true'
+      })
+      .then((data) => {
+        return Transaction
+          .findById(getId)
+      })
       .then((data) => {
         res.status(200).json(data)
       })

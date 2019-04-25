@@ -62,11 +62,11 @@
       >
 
         <template slot="actions">
-            <b-dropdown id="dropdown-right" right text="Options" variant="transparent" class="button-options">
-              <b-dropdown-item><router-link to="/">Home</router-link></b-dropdown-item>
-              <b-dropdown-item href="#">Another action</b-dropdown-item>
-              <b-dropdown-item href="#">Something else here</b-dropdown-item>
-            </b-dropdown>
+          <b-dropdown id="dropdown-right" right text="Options" variant="transparent" class="button-options">
+            <b-dropdown-item><router-link to="/">Update Product</router-link></b-dropdown-item>
+            <b-dropdown-item><router-link to="/">Update Image</router-link></b-dropdown-item>
+            <b-dropdown-item><router-link to="/">Delete Product</router-link></b-dropdown-item>
+          </b-dropdown>
         </template>
 
         <template slot="row-details" slot-scope="row">

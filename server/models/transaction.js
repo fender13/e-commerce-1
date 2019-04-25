@@ -40,11 +40,11 @@ const TransactionSchema = new schema({
     required: true
   },
   statusPengiriman: {
-    type: Boolean,
+    type: String,
     required: true
   },
   statusPenerimaan: {
-    type: Boolean,
+    type: String,
     required: true
   },
   metodePembayaran: {
@@ -60,7 +60,7 @@ const TransactionSchema = new schema({
     required: true
   },
   statusPembayaran: {
-    type: Boolean,
+    type: String,
     required: true
   },
   resiKirim: {

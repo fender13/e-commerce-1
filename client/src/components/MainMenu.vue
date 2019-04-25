@@ -27,36 +27,43 @@
           <i class="far fa-heart"></i>
           <!-- <span class='badge badge-warning' id='lblCartCount'> 5 </span> -->
         </div>
-        <div class="cart-button">
-          <b-dropdown variant="link" right size="lg" no-caret class="main-cart">
-            <template slot="button-content">
-              <i class="fa" style="font-size:24px">&#xf07a;</i>
-              <span class='badge badge-warning' id='lblCartCount'>{{ cart[0].length }}</span>
-            </template>
-            <b-dropdown-item v-if="cart[0].length > 0">
-              <table>
-                <thead class="table-head">
-                  <th class="productName">Name</th>
-                  <th class="totalQuantity">Quantity</th>
-                  <th class="totalPurchase">Price</th>
-                </thead>
-                <tbody>
-                  <tr v-for="(item, index) in cart[1]" :key="index">
-                    <td>{{ item.productName }}</td>
-                    <td>{{ cart[2][index] }}</td>
-                    <td>Rp  {{ formatPrice(cart[2][index] * item.price) }}</td>
-                  </tr>
-                  <tr class="total-price">
-                    <th>Total</th>
-                    <td></td>
-                    <td>Rp  {{ formatPrice(cart[3]) }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </b-dropdown-item>
-            
-            <b-dropdown-item><b-button block variant="primary" class="checkout-button" v-on:click.prevent="goToCheckoutPage">Check Out</b-button></b-dropdown-item>
-          </b-dropdown>
+        <div class="cart-button main-cart">
+          <div v-if="cart[0].length == 0">
+            <i class="fa" style="font-size:24px">&#xf07a;</i>
+            <span class='badge badge-warning' id='lblCartCount'>{{ cart[0].length }}</span>
+          </div>
+          <div v-else>
+            <b-dropdown variant="link" right size="lg" no-caret class="main-cart">
+              <template slot="button-content">
+                <i class="fa" style="font-size:24px">&#xf07a;</i>
+                <span class='badge badge-warning' id='lblCartCount'>{{ cart[0].length }}</span>
+              </template>
+              <b-dropdown-item>
+                <table>
+                  <thead class="table-head">
+                    <th class="productName">Name</th>
+                    <th class="totalQuantity">Quantity</th>
+                    <th class="totalPurchase">Price</th>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(item, index) in cart[1]" :key="index">
+                      <td>{{ item.productName }}</td>
+                      <td>{{ cart[2][index] }}</td>
+                      <td>Rp  {{ formatPrice(cart[2][index] * item.price) }}</td>
+                    </tr>
+                    <tr class="total-price">
+                      <th>Total</th>
+                      <td></td>
+                      <td>Rp  {{ formatPrice(cart[3]) }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </b-dropdown-item>
+              
+              <b-dropdown-item><b-button block variant="primary" class="checkout-button" v-on:click.prevent="goToCheckoutPage">Check Out</b-button></b-dropdown-item>
+            </b-dropdown>
+          </div>
+          
           
         </div>
       </div>

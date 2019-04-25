@@ -43,9 +43,11 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active" v-if="role == 'admin'">
-        <a class="nav-link" href="#">
-          <i class="fas fa-shopping-cart"></i>
-          <span>Orders</span></a>
+        <router-link to="/dashboard/order-history">
+          <a class="nav-link" href="#">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Orders</span></a>
+        </router-link>
       </li>
 
       <!-- Divider -->
