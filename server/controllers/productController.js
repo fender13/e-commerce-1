@@ -14,6 +14,7 @@ class ProductController {
     if (req.file && req.file.gcsUrl) {
       url = req.file.gcsUrl
     } else {
+      // url = 'null'
       throw new Error('Unable to upload');
     }
 

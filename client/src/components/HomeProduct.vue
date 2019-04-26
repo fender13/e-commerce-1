@@ -51,9 +51,11 @@ export default {
   },
   methods: {
     setHomeProduct() {
+      console.log('masuk home')
       axios
         .get('/products') 
         .then(({ data }) => {
+          console.log(data)
           let random = []
 
           while (random.length != 8) {

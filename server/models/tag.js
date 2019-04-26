@@ -5,11 +5,6 @@ ENV.config()
 // const dbconnect = process.env.DB_NAME
 // mongoose.connect(`mongodb://localhost/${dbconnect}`, { useNewUrlParser: true })
 
-const dbconnect = process.env.DB_URL
-mongoose.connect(`${dbconnect}`, { useNewUrlParser: true })
-
-mongoose.set('useFindAndModify', false)
-
 const schema = mongoose.Schema
 
 const TagSchema = new schema({
