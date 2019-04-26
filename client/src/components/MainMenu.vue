@@ -59,12 +59,11 @@
                   </tbody>
                 </table>
               </b-dropdown-item>
-              
+
               <b-dropdown-item><b-button block variant="primary" class="checkout-button" v-on:click.prevent="goToCheckoutPage">Check Out</b-button></b-dropdown-item>
             </b-dropdown>
           </div>
-          
-          
+
         </div>
       </div>
     </div>
@@ -76,22 +75,22 @@ import router from '@/router'
 
 export default {
   name: 'MainMenu',
-  data() {
+  data () {
     return {
 
     }
   },
-  mounted() {
+  mounted () {
     this.getCartDetails()
   },
   computed: {
-    cart() {
+    cart () {
       let cartItem = []
       cartItem = this.$store.getters.cart
 
       let arr = []
       for (let i = 0; i < cartItem.length; i++) {
-        let same = false 
+        let same = false
         for (let j = 0; j < arr.length; j++) {
           if (cartItem[i].productName == arr[j].productName) {
             same = true
@@ -120,24 +119,23 @@ export default {
       for (let i = 0; i < cartItem.length; i++) {
         total += cartItem[i].price
       }
-      
 
       return [cartItem, arr, arrCount, total]
-    },
+    }
   },
   methods: {
-    getCartDetails() {
+    getCartDetails () {
       this.$store.dispatch('getCartDetails')
     },
-    formatPrice(value) {
-      let val = (value/1).toFixed(2).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    formatPrice (value) {
+      let val = (value / 1).toFixed(2).replace('.', ',')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     },
-    goToCheckoutPage() {
+    goToCheckoutPage () {
       router.push('/check-out')
     }
   }
-  
+
 }
 </script>
 
@@ -237,19 +235,19 @@ export default {
   margin-right: 4%;
   width: 5%;
   display: flex;
-  align-items: center; 
+  align-items: center;
   text-align: right;
 }
 
 .search-container {
   width: 5%;
   display: table-cell;
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 
 /* search box start */
 form {
-  float: right;  
+  float: right;
   position: relative;
   transition: width 0.5s;
   width: 30px;

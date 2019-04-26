@@ -7,7 +7,7 @@
           <div class="sidebar-brand-text mx-3">My Perfume</div>
         </a>
       </router-link>
-      
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -128,19 +128,19 @@ import router from '@/router'
 
 export default {
   name: 'DashboardSidebar',
-  data() {
+  data () {
     return {
 
     }
   },
   computed: {
-    role(state) {
+    role (state) {
       return this.$store.getters.role
-    },
-    
+    }
+
   },
   methods: {
-    test() {
+    test () {
       console.log('masuk')
       router.push('/dashboard/add-products')
     }

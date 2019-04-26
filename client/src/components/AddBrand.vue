@@ -37,7 +37,7 @@ import router from '@/router'
 
 export default {
   name: 'AddNewBrand',
-  data() {
+  data () {
     return {
       brandName: '',
       file: '',
@@ -45,11 +45,11 @@ export default {
     }
   },
   methods: {
-    addNewBrand() {
+    addNewBrand () {
       let dataFormat = new FormData()
 
-      dataFormat.append("brandName", this.brandName)
-      dataFormat.append("image", this.$refs.file.files[0])
+      dataFormat.append('brandName', this.brandName)
+      dataFormat.append('image', this.$refs.file.files[0])
 
       axios
         .post(`/brands/upload`, dataFormat)
@@ -60,7 +60,7 @@ export default {
           console.log(response)
         })
     },
-    onImageChange() {
+    onImageChange () {
       this.fileName = this.$refs.file.files[0].name
     }
   }

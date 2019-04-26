@@ -52,7 +52,7 @@
         </div>
         <div class="new-alamat-button" >
           <b-button block variant="primary" class="Add New Address" v-on:click.prevent="setAddress()"> Add New Address</b-button>
-        </div>   
+        </div>
       </div>
     </div>
     <div class="main-table" v-if="finalService.hasOwnProperty('cost') ">
@@ -106,11 +106,11 @@ import MainHeader from '@/views/Header.vue'
 import MainFooter from '@/components/Footer.vue'
 
 export default {
-  name: 'ShippingPayment'  ,
-  data() {
+  name: 'ShippingPayment',
+  data () {
     return {
       alamat: [{ text: 'Select One', value: null }],
-      destination: '' ,
+      destination: '',
       listAlamat: [],
       courier: [{ text: 'Select One', value: null }, 'tiki', 'jne', 'pos'],
       targetCourier: '',
@@ -129,17 +129,17 @@ export default {
     MainHeader,
     MainFooter
   },
-  mounted() {
+  mounted () {
     this.getAddress()
   },
   computed: {
-    cart() {
+    cart () {
       let cartItem = []
       cartItem = this.$store.getters.cart
 
       let arr = []
       for (let i = 0; i < cartItem.length; i++) {
-        let same = false 
+        let same = false
         for (let j = 0; j < arr.length; j++) {
           if (cartItem[i].productName == arr[j].productName) {
             same = true
@@ -173,13 +173,12 @@ export default {
       for (let i = 0; i < cartItem.length; i++) {
         totalWeight += cartItem[i].weight
       }
-      
 
       return [cartItem, arr, arrCount, total, totalWeight]
     }
   },
   methods: {
-    getAddress() {
+    getAddress () {
       axios
         .get('/couriers/address')
         .then(({ data }) => {
@@ -195,10 +194,10 @@ export default {
           console.log(response)
         })
     },
-    setAddress() {
+    setAddress () {
       router.push('/dashboard/add-address')
     },
-    setPengiriman(totalWeight) {
+    setPengiriman (totalWeight) {
       for (let i = 0; i < this.listAlamat.length; i++) {
         if (this.listAlamat[i].addressName == this.destination) {
           this.finalDestination = this.listAlamat[i]
@@ -214,7 +213,7 @@ export default {
         courier: this.targetCourier
       }
 
-      axios 
+      axios
         .post('/couriers/cost', data)
         .then(({ data }) => {
           this.listService = data
@@ -227,26 +226,26 @@ export default {
           console.log(response)
         })
     },
-    setSummary() {
+    setSummary () {
       for (let i = 0; i < this.listService.length; i++) {
         if (this.listService[i].service == this.targetService) {
           this.finalService = this.listService[i]
         }
       }
     },
-    formatPrice(value) {
-      let val = (value/1).toFixed(2).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    formatPrice (value) {
+      let val = (value / 1).toFixed(2).replace('.', ',')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     },
-    purchaseOrder(allitems, items, quantity, totalBelanja, totalCost, serviceCost, fixedCourier, fixedService) {
+    purchaseOrder (allitems, items, quantity, totalBelanja, totalCost, serviceCost, fixedCourier, fixedService) {
       let data = {
         allitems: allitems,
-        items: items, 
-        quantity: quantity, 
-        totalBelanja: totalBelanja, 
-        totalCost: totalCost, 
-        serviceCost: serviceCost, 
-        fixedCourier: fixedCourier, 
+        items: items,
+        quantity: quantity,
+        totalBelanja: totalBelanja,
+        totalCost: totalCost,
+        serviceCost: serviceCost,
+        fixedCourier: fixedCourier,
         fixedService: fixedService,
         pembayaran: this.targetPembayaran,
         pengiriman: this.finalDestination

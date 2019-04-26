@@ -32,7 +32,7 @@
             </b-row>
           </b-container>
         </b-col>
-      </b-row>  
+      </b-row>
     </div>
     <MainFooter></MainFooter>
   </div>
@@ -50,28 +50,28 @@ export default {
     MainHeader,
     MainFooter
   },
-  data() {
+  data () {
     return {
-      allProducts: [],
+      allProducts: []
     }
   },
-  mounted() {
+  mounted () {
     this.getAllProduct()
   },
   methods: {
-    getAllProduct() {
+    getAllProduct () {
       axios
         .get('/products')
         .then(({ data }) => {
           this.allProducts = data
         })
     },
-    formatPrice(value) {
-      let val = (value/1).toFixed(2).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    formatPrice (value) {
+      let val = (value / 1).toFixed(2).replace('.', ',')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     },
-    formatPercent(normalPrice, price) {
-      let percent = Math.round((price - normalPrice)/normalPrice * 100)
+    formatPercent (normalPrice, price) {
+      let percent = Math.round((price - normalPrice) / normalPrice * 100)
 
       return percent
     }

@@ -25,8 +25,8 @@
 
 <script>
 export default {
-  name: "MainIntroduce"
-};
+  name: 'MainIntroduce'
+}
 </script>
 
 <style scoped>

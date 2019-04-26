@@ -56,7 +56,7 @@ import MainFooter from '@/components/Footer.vue'
 
 export default {
   name: 'CheckOutSummart',
-  data() {
+  data () {
     return {
       error: []
     }
@@ -65,17 +65,17 @@ export default {
     MainHeader,
     MainFooter
   },
-  mounted() {
+  mounted () {
     this.getCartDetails()
   },
   computed: {
-    cart() {
+    cart () {
       let cartItem = []
       cartItem = this.$store.getters.cart
 
       let arr = []
       for (let i = 0; i < cartItem.length; i++) {
-        let same = false 
+        let same = false
         for (let j = 0; j < arr.length; j++) {
           if (cartItem[i].productName == arr[j].productName) {
             same = true
@@ -109,24 +109,24 @@ export default {
       for (let i = 0; i < cartItem.length; i++) {
         totalWeight += cartItem[i].weight
       }
-      
+
       return [cartItem, arr, arrCount, total, totalWeight]
     }
   },
   methods: {
-    getCartDetails() {
+    getCartDetails () {
       this.$store.dispatch('getCartDetails')
     },
-    formatPrice(value) {
-      let val = (value/1).toFixed(2).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    formatPrice (value) {
+      let val = (value / 1).toFixed(2).replace('.', ',')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     },
-    formatPercent(normalPrice, price) {
-      let percent = Math.round((price - normalPrice)/normalPrice * 100)
+    formatPercent (normalPrice, price) {
+      let percent = Math.round((price - normalPrice) / normalPrice * 100)
 
       return percent
     },
-    goToSetAddress(items, quantity) {
+    goToSetAddress (items, quantity) {
       axios
         .post('/carts/verify-stock', {
           items: items,
@@ -141,7 +141,7 @@ export default {
           }
         })
     },
-    updateCart(list, productId) {
+    updateCart (list, productId) {
       axios
         .delete(`/carts/${productId}`)
         .then(({ data }) => {

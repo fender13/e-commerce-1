@@ -41,21 +41,19 @@ import axios from '@/database/server'
 
 export default {
   name: 'HomeProductGrid',
-  data() {
+  data () {
     return {
       home: []
     }
   },
-  mounted() {
+  mounted () {
     this.setHomeProduct()
   },
   methods: {
-    setHomeProduct() {
-      console.log('masuk home')
+    setHomeProduct () {
       axios
-        .get('/products') 
+        .get('/products')
         .then(({ data }) => {
-          console.log(data)
           let random = []
 
           while (random.length != 8) {
@@ -82,19 +80,19 @@ export default {
               }
             }
           }
-        
+
           this.home = homeProduct
         })
-        .catch(({ response}) => {
+        .catch(({ response }) => {
           console.log(response)
         })
     },
-    formatPrice(value) {
-      let val = (value/1).toFixed(2).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    formatPrice (value) {
+      let val = (value / 1).toFixed(2).replace('.', ',')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     },
-    formatPercent(normalPrice, price) {
-      let percent = Math.round((price - normalPrice)/normalPrice * 100)
+    formatPercent (normalPrice, price) {
+      let percent = Math.round((price - normalPrice) / normalPrice * 100)
 
       return percent
     }

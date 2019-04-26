@@ -119,17 +119,17 @@
           </b-row>
           <b-row class="mt-3">
             <b-col>
-              
+
             </b-col>
             <b-col>
               <div v-if="item.linkPembayaran != 'null'">
-                <a v-bind:href="item.linkPembayaran" target="_blank">Click Here To Check Resi Pembayaran</a> 
+                <a v-bind:href="item.linkPembayaran" target="_blank">Click Here To Check Resi Pembayaran</a>
               </div>
             </b-col>
             <b-col>
 
             </b-col>
-          </b-row>          
+          </b-row>
           <b-row class="mt-5" v-if="item.statusPenerimaan != 'true'">
             <div v-if="item.linkPembayaran != 'null'" class="button-status">
               <b-button block variant="primary" class="my-purchase" v-on:click.prevent="UpdateResi(item._id)">Update Resi Pengiriman</b-button>
@@ -147,16 +147,16 @@ import router from '@/router'
 
 export default {
   name: 'OrderHistory',
-  data() {
+  data () {
     return {
       allHistory: []
     }
   },
-  mounted() {
+  mounted () {
     this.getAllHistory()
   },
   methods: {
-    getAllHistory() {
+    getAllHistory () {
       axios
         .get('/purchase/all')
         .then(({ data }) => {
@@ -166,19 +166,19 @@ export default {
           console.log(response)
         })
     },
-    formatPrice(value) {
-      let val = (value/1).toFixed(2).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    formatPrice (value) {
+      let val = (value / 1).toFixed(2).replace('.', ',')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     },
-    formatPercent(normalPrice, price) {
-      let percent = Math.round((price - normalPrice)/normalPrice * 100)
+    formatPercent (normalPrice, price) {
+      let percent = Math.round((price - normalPrice) / normalPrice * 100)
 
       return percent
     },
-    formatDate(value) {
+    formatDate (value) {
       return new Date(value).toLocaleString()
     },
-    UpdateResi(id) {
+    UpdateResi (id) {
       router.push(`/dashboard/update-resi-pengiriman/${id}`)
     }
   }

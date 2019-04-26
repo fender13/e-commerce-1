@@ -33,10 +33,10 @@ export default {
     DashboardSidebar
   },
   computed: {
-    isUsername(state) {
+    isUsername (state) {
       return this.$store.getters.isUsername
     }
-  },
+  }
 }
 </script>
 
@@ -93,4 +93,3 @@ export default {
   opacity: 0
 }
 </style>
-

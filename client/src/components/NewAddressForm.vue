@@ -126,7 +126,7 @@ import router from '@/router'
 
 export default {
   name: 'NewAddressForm',
-  data() {
+  data () {
     return {
       indonesiaArea: [],
       addressName: '',
@@ -140,14 +140,14 @@ export default {
       postalCode: 0
     }
   },
-  mounted() {
+  mounted () {
     this.getArea()
   },
   computed: {
 
   },
   methods: {
-    getArea() {
+    getArea () {
       axios
         .get('/couriers')
         .then(({ data }) => {
@@ -157,7 +157,7 @@ export default {
           console.log(response)
         })
     },
-    addNewAddress() {
+    addNewAddress () {
       const split = this.cityName.split(' - ')
       const namaKota = split[0]
       this.cityId = split[1]
@@ -186,7 +186,6 @@ export default {
         .catch(({ response }) => {
           console.log(response)
         })
-      
     }
   }
 }

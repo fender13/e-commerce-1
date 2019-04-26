@@ -12,7 +12,7 @@
           >
         </b-form-select>
       </div>
-      
+
     </div>
     <div>
       <DashboardProductList v-if="menuOption == 'Products'"></DashboardProductList>
@@ -27,7 +27,7 @@ import DashboardBrandList from '@/components/BrandListDashboard.vue'
 
 export default {
   name: 'MainCatalogue',
-  data() {
+  data () {
     return {
       menuOption: 'Products',
       options: ['Products', 'Brands']

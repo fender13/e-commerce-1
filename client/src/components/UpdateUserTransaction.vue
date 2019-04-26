@@ -12,7 +12,7 @@
           <input type="file" ref="file" :value="file" @change="onImageChange()" required/>
         </div>
         <div class="input-new-create mt-5">
-          <button type="submit" class="btn btn-outline-primary">Update Post Image - Save</button>  
+          <button type="submit" class="btn btn-outline-primary">Update Post Image - Save</button>
         </div>
       </form>
     </div>
@@ -25,7 +25,7 @@ import router from '@/router'
 
 export default {
   name: 'UploadResi',
-  data() {
+  data () {
     return {
       image: '',
       file: '',
@@ -33,10 +33,10 @@ export default {
     }
   },
   methods: {
-    updateImage() {
-      let dataFormat = new FormData();
+    updateImage () {
+      let dataFormat = new FormData()
 
-      dataFormat.append("image", this.$refs.file.files[0])
+      dataFormat.append('image', this.$refs.file.files[0])
 
       axios
         .put(`/purchase/${this.$route.params.id}`, dataFormat)
@@ -47,7 +47,7 @@ export default {
           console.log(response)
         })
     },
-    onImageChange() {
+    onImageChange () {
       this.fileName = this.$refs.file.files[0].name
     }
   }

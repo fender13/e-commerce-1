@@ -155,7 +155,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 export default {
   name: 'AddNewProducts',
-  data() {
+  data () {
     return {
       productName: '',
       shortDescription: '',
@@ -178,11 +178,11 @@ export default {
   components: {
     InputTag
   },
-  mounted() {
+  mounted () {
     this.getAllBrands()
   },
   methods: {
-    getAllBrands() {
+    getAllBrands () {
       axios
         .get(`/brands`)
         .then(({ data }) => {
@@ -194,19 +194,19 @@ export default {
           console.log(response)
         })
     },
-    addNewProduct() {
+    addNewProduct () {
       let dataFormat = new FormData()
 
-      dataFormat.append("productName", this.productName)
-      dataFormat.append("shortDescription", this.shortDescription)
-      dataFormat.append("tags", this.tags)
-      dataFormat.append("brand", this.brand)
-      dataFormat.append("productDescription", this.editorData)
-      dataFormat.append("normalPrice", this.normalPrice)
-      dataFormat.append("price", this.price)
-      dataFormat.append("quantity", this.quantity)
-      dataFormat.append("weight", this.weight)
-      dataFormat.append("image", this.$refs.file.files[0])
+      dataFormat.append('productName', this.productName)
+      dataFormat.append('shortDescription', this.shortDescription)
+      dataFormat.append('tags', this.tags)
+      dataFormat.append('brand', this.brand)
+      dataFormat.append('productDescription', this.editorData)
+      dataFormat.append('normalPrice', this.normalPrice)
+      dataFormat.append('price', this.price)
+      dataFormat.append('quantity', this.quantity)
+      dataFormat.append('weight', this.weight)
+      dataFormat.append('image', this.$refs.file.files[0])
 
       axios
         .post(`/products/upload`, dataFormat)
@@ -217,7 +217,7 @@ export default {
           console.log(response)
         })
     },
-    onImageChange() {
+    onImageChange () {
       this.fileName = this.$refs.file.files[0].name
     }
   }

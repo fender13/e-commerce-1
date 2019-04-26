@@ -42,20 +42,20 @@
 
 <script>
 export default {
-  name: "LoginForm",
-  data() {
+  name: 'LoginForm',
+  data () {
     return {
       username: '',
       password: ''
     }
   },
   computed: {
-    errorLogin(state) {
+    errorLogin (state) {
       return this.$store.getters.errorLogin
     }
   },
   methods: {
-    userLogin() {
+    userLogin () {
       this.$store.dispatch('userLogin', {
         username: this.username,
         password: this.password
@@ -64,7 +64,7 @@ export default {
       this.password = ''
     }
   }
-};
+}
 </script>
 
 <style scoped>

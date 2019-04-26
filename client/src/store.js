@@ -22,45 +22,45 @@ export default new Vuex.Store({
     cart: []
   },
   mutations: {
-    setFirstNameError(state, payload) {
+    setFirstNameError (state, payload) {
       state.errorFirstName = payload
     },
-    setLastNameError(state, payload) {
+    setLastNameError (state, payload) {
       state.errorLastName = payload
     },
-    setEmailError(state, payload) {
+    setEmailError (state, payload) {
       state.errorEmail = payload
     },
-    setUsernameError(state, payload) {
+    setUsernameError (state, payload) {
       state.errorUsername = payload
     },
-    setPasswordError(state, payload) {
+    setPasswordError (state, payload) {
       state.errorPassword = payload
     },
-    setId(state, payload) {
+    setId (state, payload) {
       state.id = payload
     },
-    setIsLogin(state, payload) {
+    setIsLogin (state, payload) {
       state.isLogin = payload
     },
-    setUsername(state, payload) {
+    setUsername (state, payload) {
       state.username = payload
     },
-    setRole(state, payload) {
+    setRole (state, payload) {
       state.role = payload
     },
-    setErrorLogin(state, payload) {
+    setErrorLogin (state, payload) {
       state.errorLogin = payload
     },
-    setItemCart(state, payload) {
+    setItemCart (state, payload) {
       state.cart.push(payload)
     },
-    setSavedCart(state, payload) {
+    setSavedCart (state, payload) {
       state.cart = payload
     }
   },
   actions: {
-    verifyToken({ commit }, { isToken }) {
+    verifyToken ({ commit }, { isToken }) {
       axios
         .get('/verify', {
           headers: {
@@ -80,7 +80,7 @@ export default new Vuex.Store({
           commit('setRole', '')
         })
     },
-    userRegistration({ commit }, { firstName, lastName, username, email, password }) {
+    userRegistration ({ commit }, { firstName, lastName, username, email, password }) {
       const data = {
         firstName: firstName,
         lastName: lastName,
@@ -93,7 +93,7 @@ export default new Vuex.Store({
         .post('/register', data)
         .then(({ data }) => {
           router.push('/')
-          swal("Register berhasil!!", "Harap LOGIN terlebih dahulu untuk melanjutkan!!", "success")
+          swal('Register berhasil!!', 'Harap LOGIN terlebih dahulu untuk melanjutkan!!', 'success')
         })
         .catch(({ response }) => {
           if (response.data) {
@@ -129,7 +129,7 @@ export default new Vuex.Store({
           }
         })
     },
-    userLogin({ commit }, { username, password }) {
+    userLogin ({ commit }, { username, password }) {
       const data = {
         username: username,
         password: password
@@ -143,7 +143,7 @@ export default new Vuex.Store({
           commit('setUsername', data.username)
           commit('setRole', data.role)
           router.push('/')
-          swal("Welcome", data.username, "success")
+          swal('Welcome', data.username, 'success')
         })
         .catch(({ response }) => {
           if (response.data) {
@@ -155,7 +155,7 @@ export default new Vuex.Store({
           }
         })
     },
-    addToCart({ commit }, { productId }) {
+    addToCart ({ commit }, { productId }) {
       const data = {
         productId: productId
       }
@@ -168,7 +168,7 @@ export default new Vuex.Store({
           console.log(response)
         })
     },
-    getCartDetails({ commit }) {
+    getCartDetails ({ commit }) {
       axios
         .get('/carts')
         .then(({ data }) => {
@@ -178,49 +178,49 @@ export default new Vuex.Store({
           console.log(response)
         })
     },
-    userLogout({ commit }) {
+    userLogout ({ commit }) {
       localStorage.clear()
       commit('setId', '')
       commit('setIsLogin', false)
       commit('setUsername', '')
       commit('setRole', '')
       router.push('/')
-      swal("Good Bye", "success")
+      swal('Good Bye', 'success')
     },
-    updateCartItems({ commit }, { productId }) {
+    updateCartItems ({ commit }, { productId }) {
 
     }
-    
+
   },
   getters: {
-    errorFirstName(state) {
+    errorFirstName (state) {
       return state.errorFirstName
     },
-    errorLastName(state) {
+    errorLastName (state) {
       return state.errorLastName
     },
-    errorEmail(state) {
+    errorEmail (state) {
       return state.errorEmail
     },
-    errorUsername(state) {
+    errorUsername (state) {
       return state.errorUsername
     },
-    errorPassword(state) {
+    errorPassword (state) {
       return state.errorPassword
     },
-    errorLogin(state) {
+    errorLogin (state) {
       return state.errorLogin
     },
-    isLogin(state) {
+    isLogin (state) {
       return state.isLogin
     },
-    isUsername(state) {
+    isUsername (state) {
       return state.username
     },
-    role(state) {
+    role (state) {
       return state.role
     },
-    cart(state) {
+    cart (state) {
       return state.cart
     }
   }

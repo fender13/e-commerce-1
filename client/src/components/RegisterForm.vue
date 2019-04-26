@@ -95,35 +95,35 @@
 <script>
 import router from '../router'
 export default {
-  name: "RegisterForm",
-  data() {
+  name: 'RegisterForm',
+  data () {
     return {
-      firstName: "",
-      lastName: "",
-      email: "",
-      username: "",
-      password: ""
-    };
+      firstName: '',
+      lastName: '',
+      email: '',
+      username: '',
+      password: ''
+    }
   },
   computed: {
-    errorFirstName(state) {
+    errorFirstName (state) {
       return this.$store.getters.errorFirstName
     },
-    errorLastName(state) {
+    errorLastName (state) {
       return this.$store.getters.errorLastName
     },
-    errorEmail(state) {
+    errorEmail (state) {
       return this.$store.getters.errorEmail
     },
-    errorUsername(state) {
+    errorUsername (state) {
       return this.$store.getters.errorUsername
     },
-    errorPassword(state) {
+    errorPassword (state) {
       return this.$store.getters.errorPassword
     }
   },
   methods: {
-    userRegister() {
+    userRegister () {
       console.log('masuk')
       this.$store.dispatch('userRegistration', {
         firstName: this.firstName,
@@ -137,9 +137,9 @@ export default {
       this.username = ''
       this.email = ''
       this.password = ''
-    },
+    }
   }
-};
+}
 </script>
 
 <style scoped>

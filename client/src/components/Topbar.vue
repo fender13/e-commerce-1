@@ -25,14 +25,14 @@
 
 <script>
 export default {
-  name:'MainTopbar',
+  name: 'MainTopbar',
   computed: {
-    isLogin(state) {
+    isLogin (state) {
       return this.$store.getters.isLogin
     }
   },
   methods: {
-    logout() {
+    logout () {
       this.$store.dispatch('userLogout')
     }
   }

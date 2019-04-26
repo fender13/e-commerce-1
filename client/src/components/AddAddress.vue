@@ -26,7 +26,7 @@ import NewAddressForm from '@/components/NewAddressForm.vue'
 
 export default {
   name: 'DashboardAddAddress',
-  data() {
+  data () {
     return {
       menuOption: 'Alamat',
       options: ['Alamat', 'Daftar Alamat']

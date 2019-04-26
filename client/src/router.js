@@ -103,7 +103,7 @@ const router = new Router({
             authRequired: true
           },
           component: () => import(/* webpackChunkName: "UpdateResiPengiriman" */ './components/UpdateProduct.vue')
-        },
+        }
       ]
     },
     {
@@ -137,21 +137,21 @@ const router = new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "ShippingPayment" */ './views/Shipping.vue')
-    },
+    }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.authRequired)) {
-      if (!localStorage.getItem('token')) {
-          next({
-              path: '/member-area'
-          });
-      } else {
-          next()
-      }
-  } else {
+    if (!localStorage.getItem('token')) {
+      next({
+        path: '/member-area'
+      })
+    } else {
       next()
+    }
+  } else {
+    next()
   }
 })
 

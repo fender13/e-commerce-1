@@ -18,7 +18,7 @@
         </b-row>
         <b-row class="mb-3">
           <b-col class="text-center">
-            <button type="submit" class="btn btn-outline-primary">Update Resi</button>  
+            <button type="submit" class="btn btn-outline-primary">Update Resi</button>
           </b-col>
         </b-row>
       </b-form>
@@ -32,13 +32,13 @@ import router from '@/router'
 
 export default {
   name: 'UpdateResiPengiriman',
-  data() {
+  data () {
     return {
       resiKirim: ''
     }
   },
   methods: {
-    updateResi() {
+    updateResi () {
       console.log('masuk')
       axios
         .put(`/purchase/resi-kirim/${this.$route.params.id}`, {

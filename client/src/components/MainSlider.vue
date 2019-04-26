@@ -36,17 +36,17 @@
 <script>
 export default {
   name: 'MainSlider',
-  data() {
+  data () {
     return {
       slide: 0,
       sliding: null
     }
   },
   methods: {
-    onSlideStart(slide) {
+    onSlideStart (slide) {
       this.sliding = true
     },
-    onSlideEnd(slide) {
+    onSlideEnd (slide) {
       this.sliding = false
     }
   }

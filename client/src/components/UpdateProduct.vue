@@ -155,7 +155,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 export default {
   name: 'UpdateProducts',
-  data() {
+  data () {
     return {
       productName: '',
       shortDescription: '',
@@ -178,11 +178,11 @@ export default {
   components: {
     InputTag
   },
-  mounted() {
+  mounted () {
     this.getAllBrands()
   },
   methods: {
-    getAllBrands() {
+    getAllBrands () {
       axios
         .get(`/brands`)
         .then(({ data }) => {
@@ -195,7 +195,7 @@ export default {
           console.log(response)
         })
     },
-    getOneProduct() {
+    getOneProduct () {
       axios
         .get(`/products/${this.$route.params.id}`)
         .data(({ data }) => {

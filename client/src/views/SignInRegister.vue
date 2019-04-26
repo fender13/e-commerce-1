@@ -36,28 +36,28 @@
       </div>
     </div>
   </div>
-  
+
 </template>
 
 <script>
 import MainHeader from '@/views/Header.vue'
-import LoginForm from "@/components/LoginForm.vue";
-import RegisterForm from "@/components/RegisterForm.vue";
+import LoginForm from '@/components/LoginForm.vue'
+import RegisterForm from '@/components/RegisterForm.vue'
 
 export default {
-  name: "SignInRegister",
+  name: 'SignInRegister',
   components: {
     MainHeader,
     LoginForm,
     RegisterForm
   },
-  data() {
+  data () {
     return {
       loginOptions: true
     }
   },
   methods: {
-    changeOptions() {
+    changeOptions () {
       if (this.loginOptions == true) {
         this.loginOptions = false
       } else {
@@ -65,7 +65,7 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>

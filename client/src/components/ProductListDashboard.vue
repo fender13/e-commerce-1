@@ -94,70 +94,70 @@
 </template>
 
 <script>
-  import axios from '@/database/server'
-  
-  export default {
-    name: 'DashboardProductList',
-    data() {
-      return {
-        listProducts: [],
-        items: [],
-        fields: [
-          { key: 'productName', label: 'Product Name', sortable: true, sortDirection: 'desc' },
-          { key: 'brand.brandName', label: 'Brand', sortable: true, sortDirection: 'desc' },
-          { key: 'quantity', label: 'Quantity', sortable: true, sortDirection: 'desc' },
-          { key: 'actions', label: 'Actions' }
-        ],
-        totalRows: 1,
-        currentPage: 1,
-        perPage: 10,
-        pageOptions: [5, 10, 15, 20],
-        sortBy: null,
-        sortDesc: false,
-        sortDirection: 'asc',
-        filter: null,
-        modalInfo: { title: '', content: '' }
-      }
+import axios from '@/database/server'
+
+export default {
+  name: 'DashboardProductList',
+  data () {
+    return {
+      listProducts: [],
+      items: [],
+      fields: [
+        { key: 'productName', label: 'Product Name', sortable: true, sortDirection: 'desc' },
+        { key: 'brand.brandName', label: 'Brand', sortable: true, sortDirection: 'desc' },
+        { key: 'quantity', label: 'Quantity', sortable: true, sortDirection: 'desc' },
+        { key: 'actions', label: 'Actions' }
+      ],
+      totalRows: 1,
+      currentPage: 1,
+      perPage: 10,
+      pageOptions: [5, 10, 15, 20],
+      sortBy: null,
+      sortDesc: false,
+      sortDirection: 'asc',
+      filter: null,
+      modalInfo: { title: '', content: '' }
+    }
+  },
+  computed: {
+    sortOptions () {
+      // Create an options list from our fields
+      return this.fields
+        .filter(f => f.sortable)
+        .map(f => {
+          return { text: f.label, value: f.key }
+        })
+    }
+  },
+  mounted () {
+    // Set the initial number of items
+    this.getAllProductList()
+  },
+  methods: {
+    getAllProductList () {
+      axios
+        .get('/products')
+        .then(({ data }) => {
+          this.items = data
+          this.totalRows = this.items.length
+        })
     },
-    computed: {
-      sortOptions() {
-        // Create an options list from our fields
-        return this.fields
-          .filter(f => f.sortable)
-          .map(f => {
-            return { text: f.label, value: f.key }
-          })
-      }
+    info (item, index, button) {
+      this.modalInfo.title = `Row index: ${index}`
+      this.modalInfo.content = JSON.stringify(item, null, 2)
+      this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
-    mounted() {
-      // Set the initial number of items
-      this.getAllProductList()
+    resetModal () {
+      this.modalInfo.title = ''
+      this.modalInfo.content = ''
     },
-    methods: {
-      getAllProductList() {
-        axios
-          .get('/products')
-          .then(({ data }) => {
-            this.items = data
-            this.totalRows = this.items.length
-          })
-      },
-      info(item, index, button) {
-        this.modalInfo.title = `Row index: ${index}`
-        this.modalInfo.content = JSON.stringify(item, null, 2)
-        this.$root.$emit('bv::show::modal', 'modalInfo', button)
-      },
-      resetModal() {
-        this.modalInfo.title = ''
-        this.modalInfo.content = ''
-      },
-      onFiltered(filteredItems) {
-        // Trigger pagination to update the number of buttons/pages due to filtering
-        this.totalRows = filteredItems.length
-        this.currentPage = 1
-      }
+    onFiltered (filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length
+      this.currentPage = 1
     }
   }
+}
 </script>
 
 <style scoped>

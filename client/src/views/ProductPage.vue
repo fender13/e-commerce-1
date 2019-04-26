@@ -7,7 +7,6 @@
         <img class="active" v-bind:src="productPicture" alt="">
       </div>
 
-
       <!-- Right Column -->
       <div class="right-column">
 
@@ -36,7 +35,7 @@
         <div class="opsi-button">
           <div v-if="errorQuantity == ''">
             <a href="#" class="cart-btn"  v-on:click.prevent="addToCart()">Add to cart</a>
-            
+
           </div>
           <div v-else class="button-cart">
             <a class="cart-btn" v-on:click.prevent="addToCart()">Add to cart</a>
@@ -73,7 +72,7 @@ import MainFooter from '@/components/Footer.vue'
 
 export default {
   name: 'ProductPage',
-  data() {
+  data () {
     return {
       productId: '',
       productName: '',
@@ -95,13 +94,13 @@ export default {
     MainHeader,
     MainFooter
   },
-  mounted() {
+  mounted () {
     this.getSingleProduct(this.$route.params.id)
     this.count = 0
     this.cekStock()
   },
   computed: {
-    cart() {
+    cart () {
       let cartItem = []
       cartItem = this.$store.getters.cart
       let count = 0
@@ -113,13 +112,13 @@ export default {
       }
 
       this.count = count
-    },
+    }
   },
   methods: {
-    getSingleProduct(id) {
+    getSingleProduct (id) {
       axios
         .get(`products/${id}`)
-        .then(({ data }) => { 
+        .then(({ data }) => {
           this.productId = data._id
           this.productName = data.productName
           this.shortDescriptions = data.shortDescriptions
@@ -136,14 +135,14 @@ export default {
           console.log(response)
         })
     },
-    cekStock() {
+    cekStock () {
       this.$store.dispatch('getCartDetails')
     },
-    formatPrice(value) {
-      let val = (value/1).toFixed(2).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    formatPrice (value) {
+      let val = (value / 1).toFixed(2).replace('.', ',')
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     },
-    addToCart() {
+    addToCart () {
       if (this.$store.state.isLogin == false) {
         router.push('/member-area')
       } else {

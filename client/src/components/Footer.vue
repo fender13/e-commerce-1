@@ -35,7 +35,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">Copyright &copy; 2019 All Rights Reserved by 
+            <p class="copyright-text">Copyright &copy; 2019 All Rights Reserved by
          <a href="#">Fender13</a>.
             </p>
           </div>
@@ -45,7 +45,7 @@
               <li><a class="facebook" href="#"><i class="fab fa-facebook-f" style="color: white"></i></a></li>
               <li><a class="twitter" href="#"><i class="fab fa-twitter" style="color: white"></i></a></li>
               <li><a class="dribbble" href="#"><i class="fab fa-instagram" style="color: white"></i></a></li>
-              <li><a class="linkedin" href="#"><i class="fab fa-pinterest" style="color: white"></i></a></li>   
+              <li><a class="linkedin" href="#"><i class="fab fa-pinterest" style="color: white"></i></a></li>
             </ul>
           </div>
         </div>
